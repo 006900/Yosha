@@ -42,14 +42,10 @@ fun AlignmentTop(){
 
         colors = CardDefaults.cardColors(
             Color.DarkGray)
-        , shape = RoundedCornerShape(topStart = 0.dp ,
-            topEnd = 40.dp,
-            bottomEnd = 0.dp,
-            bottomStart = 40.dp)
     ) {
 
         Row(
-            modifier = Modifier.fillMaxSize().background(Color(0xA4BE0000)),
+            modifier = Modifier.fillMaxSize(),
             verticalAlignment = Alignment.CenterVertically
         ) {
 

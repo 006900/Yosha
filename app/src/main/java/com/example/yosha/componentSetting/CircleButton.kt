@@ -37,11 +37,7 @@ fun CircleButton(){
         .height(70.dp),
 
         colors = CardDefaults.cardColors(
-             Color.DarkGray),
-        shape = RoundedCornerShape(topStart = 0.dp ,
-            topEnd = 40.dp,
-            bottomEnd = 0.dp,
-            bottomStart = 40.dp)
+             Color.DarkGray)
     ){
 
         Row (modifier = Modifier.fillMaxSize(),

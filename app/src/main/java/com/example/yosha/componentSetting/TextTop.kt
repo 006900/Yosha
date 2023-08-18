@@ -24,14 +24,13 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ColorTextButton(){
+fun TextTop() {
 
     val contextBy = LocalContext.current
     val tokenColor = remember {
-        mutableStateOf(TextFieldValue("Color Text Button"))
+        mutableStateOf(TextFieldValue("Text Top"))
     }
     val storeColor = DataStoreUtil(contextBy)
 
@@ -50,33 +49,33 @@ fun ColorTextButton(){
 
             TextField(
                 value = tokenColor.value,
-                onValueChange = {},
-                readOnly = true,
+                onValueChange = {}, readOnly = true,
                 trailingIcon = {
-                    ExposedDropdownMenuDefaults
-                        .TrailingIcon(expanded = exposed)
+                    ExposedDropdownMenuDefaults.TrailingIcon(expanded = exposed)
                 },
                 modifier = Modifier.fillMaxWidth().menuAnchor(),
                 enabled = false
             )
-            ExposedDropdownMenu(expanded = exposed,
-                onDismissRequest = { exposed = false }) {
+            ExposedDropdownMenu(expanded = exposed, onDismissRequest = { exposed = false }) {
+               ListDataColor.forEach {
+                   DropdownMenuItem(text = { Text(it.name, color = it.color) },
+                       onClick = {
+                           exposed = false
+                           tokenColor.value = TextFieldValue(it.name)
+                           CoroutineScope(Dispatchers.IO).launch {
+                               storeColor.saveColorTextTop(
+                                   tokenColor.value.text
+                               )
+                           }
+                       })
+               }
+             }
+             }}}
 
-                ListDataColor.forEach {
 
-                    DropdownMenuItem(text = { Text(it.name,
-                        color = it.color) },
-                        onClick = {
-                            exposed = false
-                            tokenColor.value = TextFieldValue(it.name)
-                            CoroutineScope(Dispatchers.IO).launch {
-                                storeColor.saveColorTextButton(
-                                    tokenColor.value.text
-                                )
-                            }
-                        })
 
-                }
-            } }
-    }
-}
+
+/*exposed = false
+tokenColor.value = TextFieldValue("blue_600")
+
+ */

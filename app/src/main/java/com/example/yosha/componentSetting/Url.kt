@@ -48,14 +48,6 @@ fun Url() {
             .fillMaxWidth()
             .padding(10.dp)
             .height(70.dp),
-
-        colors = CardDefaults.cardColors(
-            Color(0x70FF3636)
-        )
-        , shape = RoundedCornerShape(topStart = 0.dp ,
-            topEnd = 40.dp,
-            bottomEnd = 0.dp,
-            bottomStart = 40.dp)
     ) {
 
         Row(

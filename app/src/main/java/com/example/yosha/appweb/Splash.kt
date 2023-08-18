@@ -52,7 +52,6 @@ fun Splash(rememberHostSplash: NavHostController) {
     val systemUiController = rememberSystemUiController()
     SideEffect {
         systemUiController.isSystemBarsVisible=false
-        systemUiController.isNavigationBarVisible=false
     }
 
 
@@ -83,7 +82,8 @@ fun Splash(rememberHostSplash: NavHostController) {
             }else{
                 GlideImage(model = splashToken.value,
                     contentDescription = null,
-                    modifier = Modifier.fillMaxSize(), contentScale = ContentScale.FillHeight
+                    modifier = Modifier.fillMaxSize(),
+                    contentScale = ContentScale.FillHeight
                     )
             }
 

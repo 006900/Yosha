@@ -40,10 +40,7 @@ fun Border() {
 
         colors = CardDefaults.cardColors(
                 Color.DarkGray
-        ), shape = RoundedCornerShape(topStart = 0.dp ,
-            topEnd = 40.dp,
-            bottomEnd = 0.dp,
-            bottomStart = 40.dp)
+        )
     ) {
 
         Row(

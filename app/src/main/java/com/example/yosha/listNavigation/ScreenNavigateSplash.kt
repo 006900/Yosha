@@ -19,6 +19,9 @@ fun ScreenNavigationSplash(){
     //retrieving the boolean value from the data store as a state
     val enabledSplash by dataStore.enabledSplash.collectAsState(initial = true)
 
+    val dataConverter = DataStoreUtil(LocalContext.current)
+    val dataConverterView by dataConverter.opacity.collectAsState(initial = false)
+
     val rememberHostSplash= rememberNavController()
     NavHost(navController = rememberHostSplash,
         startDestination =
@@ -33,5 +36,6 @@ fun ScreenNavigationSplash(){
         composable(ScreenSplash.BottomNav.route) {
             BottomNav()
         }
+
     }
 }

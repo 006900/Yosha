@@ -1,4 +1,4 @@
-package com.example.yosha.componentSetting
+package com.example.yosha.screenUi
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -20,16 +20,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import com.example.yosha.componentSetting.DataStoreUtil
 import kotlinx.coroutines.launch
 
 @Composable
-fun Theme(){
+fun ModeView(){
 
     val scope = rememberCoroutineScope()
     //creating an object of your datastore
     val dataStore = DataStoreUtil(LocalContext.current)
     //retrieving the boolean value from the data store as a state
-    val darkTheme by dataStore.darkThemeUi.collectAsState(initial = true)
+    val darkTheme by dataStore.modeView.collectAsState(initial = true)
 
     Card (modifier = Modifier
         .fillMaxWidth()
@@ -37,12 +38,12 @@ fun Theme(){
         .height(70.dp),
 
         colors = CardDefaults.cardColors(
-             Color.DarkGray)
+            Color.DarkGray)
     ){
 
         Row (modifier = Modifier.fillMaxSize(),
             verticalAlignment = Alignment.CenterVertically){
-            Text(text = "Dark Theme",
+            Text(text = "ModeView",
 
                 color = Color.LightGray,
 
@@ -53,7 +54,7 @@ fun Theme(){
                 .padding(end = 20.dp),
                 contentAlignment = Alignment.TopEnd) {
                 Switch(checked = darkTheme, onCheckedChange = { scope.launch{
-                    dataStore.saveForceDarkTheme(it)
+                    dataStore.saveModeView(it)
                 } })
             }
         }

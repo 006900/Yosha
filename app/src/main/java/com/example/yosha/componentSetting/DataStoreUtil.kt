@@ -27,10 +27,11 @@ class DataStoreUtil(private val context: Context) {
         val URL_Top= stringPreferencesKey("url_top")
         val TITLE= stringPreferencesKey("title")
         val IMAGE_TOP = booleanPreferencesKey("image_top")
-        val TextColor = stringPreferencesKey("text_color")
-        val ColorTextButton = stringPreferencesKey("Color_Text_Button")
-        val FountColorButton = stringPreferencesKey("Fount_Color_Button")
-
+        val COLOR_TEXT_BUTTON = stringPreferencesKey("color_text_button")
+        val COLOR_TEXT_TOP = stringPreferencesKey("color_text_top")
+        val COLOR_BUTTON = stringPreferencesKey("color_button")
+        val MODE_VIEW = booleanPreferencesKey("mode_view")
+        val BORDER_COLOR = stringPreferencesKey("border_color")
 
     }
 
@@ -154,33 +155,54 @@ class DataStoreUtil(private val context: Context) {
         }
     }
 
-    val colorTextCalculator: Flow<String> = context.dataStore.data.map { preferences ->
-        preferences[TextColor] ?: ""
-    }
-
-    suspend fun saveColorTextCalculator(token: String) {
-        context.dataStore.edit { preferences ->
-            preferences[TextColor] = token
-        }
-    }
 
     val colorTextButton: Flow<String> = context.dataStore.data.map { preferences ->
-        preferences[ColorTextButton] ?: ""
+        preferences[COLOR_TEXT_BUTTON] ?: ""
     }
 
     suspend fun saveColorTextButton(token: String) {
         context.dataStore.edit { preferences ->
-            preferences[ColorTextButton] = token
+            preferences[COLOR_TEXT_BUTTON] = token
         }
     }
 
-    val fountColorButton: Flow<String> = context.dataStore.data.map { preferences ->
-        preferences[FountColorButton] ?: ""
+    val colorTextTop: Flow<String> = context.dataStore.data.map { preferences ->
+        preferences[COLOR_TEXT_TOP] ?: ""
     }
 
-    suspend fun saveFountColorButton(token: String) {
+    suspend fun saveColorTextTop(token: String) {
         context.dataStore.edit { preferences ->
-            preferences[FountColorButton] = token
+            preferences[COLOR_TEXT_TOP] = token
+        }
+    }
+
+    val colorButton: Flow<String> = context.dataStore.data.map { preferences ->
+        preferences[COLOR_BUTTON] ?: ""
+    }
+
+    suspend fun saveColorButton(token: String) {
+        context.dataStore.edit { preferences ->
+            preferences[COLOR_BUTTON] = token
+        }
+    }
+
+    val modeView: Flow<Boolean> = context.dataStore.data.map { preferences ->
+        preferences[MODE_VIEW] ?: false
+    }
+
+    suspend fun saveModeView(token: Boolean) {
+        context.dataStore.edit { preferences ->
+            preferences[MODE_VIEW] = token
+        }
+    }
+
+    val borderColor: Flow<String> = context.dataStore.data.map { preferences ->
+        preferences[BORDER_COLOR] ?: ""
+    }
+
+    suspend fun saveBorderColor(token: String) {
+        context.dataStore.edit { preferences ->
+            preferences[BORDER_COLOR] = token
         }
     }
 

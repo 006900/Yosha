@@ -37,8 +37,8 @@ sealed class BottomBarScreen(
         icon_focused = R.drawable.configurationonfocused
     )
 
-    object ScreenNavigation: BottomBarScreen(
-        route = "ScreenNavigation"
+    object TempScreen: BottomBarScreen(
+        route = "TempScreen"
     )
 
 

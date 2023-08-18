@@ -1,4 +1,4 @@
-package com.example.yosha.componentSetting
+package com.example.yosha
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -19,19 +19,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
+import com.example.yosha.componentSetting.DataStoreUtil
 import com.example.yosha.dataClass.ListDataColor
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ColorTextButton(){
+fun BorderColor() {
 
     val contextBy = LocalContext.current
     val tokenColor = remember {
-        mutableStateOf(TextFieldValue("Color Text Button"))
+        mutableStateOf(TextFieldValue("Border Color"))
     }
     val storeColor = DataStoreUtil(contextBy)
 
@@ -50,33 +50,29 @@ fun ColorTextButton(){
 
             TextField(
                 value = tokenColor.value,
-                onValueChange = {},
-                readOnly = true,
+                onValueChange = {}, readOnly = true,
                 trailingIcon = {
-                    ExposedDropdownMenuDefaults
-                        .TrailingIcon(expanded = exposed)
+                    ExposedDropdownMenuDefaults.TrailingIcon(expanded = exposed)
                 },
                 modifier = Modifier.fillMaxWidth().menuAnchor(),
                 enabled = false
             )
-            ExposedDropdownMenu(expanded = exposed,
-                onDismissRequest = { exposed = false }) {
-
+            ExposedDropdownMenu(expanded = exposed, onDismissRequest = { exposed = false }) {
                 ListDataColor.forEach {
-
-                    DropdownMenuItem(text = { Text(it.name,
-                        color = it.color) },
+                    DropdownMenuItem(text = { Text(it.name, color = it.color) },
                         onClick = {
                             exposed = false
                             tokenColor.value = TextFieldValue(it.name)
                             CoroutineScope(Dispatchers.IO).launch {
-                                storeColor.saveColorTextButton(
+                                storeColor.saveBorderColor(
                                     tokenColor.value.text
                                 )
                             }
                         })
-
                 }
-            } }
+            }
+        }
     }
 }
+
+
